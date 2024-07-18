@@ -1,0 +1,108 @@
+/* NavBar.css */
+
+/* Existing styles */
+.navbar {
+
+}
+
+
+.navbar-button {
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s ease-out, background-color 0.3s ease-out;
+}
+
+.navbar-button::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.3);
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: transform 0.3s ease-out;
+  transform: scaleX(0);
+  transform-origin: right;
+}
+
+.navbar-button:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.navbar-button:hover {
+  color: #fff;
+  background-color: #3498db;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Navigation icons styles */
+.nav-icons-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.nav-icons-container.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nav-icon-button {
+  background-color: #34495e;
+  color: white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.nav-icon-button:hover {
+  background-color: #1abc9c;
+}
+
+/* Hover animation for navbar button */
+.navbar-button {
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+  z-index: 0;
+}
+
+.navbar-button:hover::before {
+  transform: scaleX(1);
+}
+
+.navbar-button:hover {
+  color: #fff;
+}
