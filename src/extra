@@ -1,0 +1,37 @@
+const Home = () => {
+    useEffect(() => {
+      const card = document.querySelector('.card');
+  
+      const handleMouseMove = (e) => {
+        const { offsetWidth: width, offsetHeight: height } = card;
+        const { offsetX: x, offsetY: y } = e;
+        const moveX = (x / width - 0.5) * 20; 
+        const moveY = (y / height - 0.5) * 20;
+  
+        card.style.transform = `rotateY(${moveX}deg) rotateX(${-moveY}deg)`;
+      };
+  
+      const resetTransform = () => {
+        card.style.transform = 'rotateY(0deg) rotateX(0deg)';
+      };
+  
+      card.addEventListener('mousemove', handleMouseMove);
+      card.addEventListener('mouseleave', resetTransform);
+  
+      const handleDeviceOrientation = (e) => {
+        const { beta, gamma } = e; // beta: front-to-back tilt, gamma: left-to-right tilt
+  
+        const rotateX = (beta / 90) * 15; // Scale the values to be more subtle
+        const rotateY = (gamma / 90) * 15;
+  
+        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      };
+  
+      window.addEventListener('deviceorientation', handleDeviceOrientation);
+  
+      return () => {
+        card.removeEventListener('mousemove', handleMouseMove);
+        card.removeEventListener('mouseleave', resetTransform);
+        window.removeEventListener('deviceorientation', handleDeviceOrientation);
+      };
+    }, []);
